@@ -4,10 +4,10 @@
  */
 package ies.torredelrey.rmj.u5_p2_g2.modelo;
 
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 
 /**
  *
@@ -73,7 +73,7 @@ public class DetalleOrdenesPK implements Serializable {
 
     @Override
     public String toString() {
-        return "ies.torredelrey.rmj.u5_p2_g2.DetalleOrdenesPK[ ordenid=" + ordenid + ", detalleid=" + detalleid + " ]";
+        return "ies.torredelrey.rmj.u5_p2_g2.modelo.DetalleOrdenesPK[ ordenid=" + ordenid + ", detalleid=" + detalleid + " ]";
     }
     
 }
