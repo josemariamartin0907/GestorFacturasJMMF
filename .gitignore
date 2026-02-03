@@ -6,8 +6,7 @@
 /nbdist/
 /.nb-gradle/
 # Ignore JPA persistence configuration
-src/main/resources/META-INF/persistence.xml
-
+**/persistence.xml
 
 # IDE config
 /.idea/
