@@ -4,6 +4,22 @@
  */
 package ies.torredelrey.rmj.u5_p2_g2.vista;
 
+import ies.torredelrey.rmj.u5_p2_g2.ProductosJpaController;
+import ies.torredelrey.rmj.u5_p2_g2.modelo.Productos;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import java.awt.Desktop;
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.List;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
 /**
  *
  * @author Usuario
@@ -84,7 +100,42 @@ public class FrmProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEmpleadosActionPerformed
-        // TODO add your handling code here:
+      try {
+
+        EntityManagerFactory emf =
+                Persistence.createEntityManagerFactory("persistence");
+
+        EntityManager em = emf.createEntityManager();
+
+        // TU JPA controller
+        ProductosJpaController con = new ProductosJpaController(emf);
+
+        // Obtener lista de productos desde JPA
+        List<Productos> lista = con.findProductosEntities();
+
+        // Convertir a DataSource Jasper
+        JRBeanCollectionDataSource ds =
+                new JRBeanCollectionDataSource(lista);
+
+        String archivo = "C:\\Users\\Usuario\\Downloads\\GestorFacturasJMMF\\report_trabajo2.jasper";
+
+        JasperPrint jp = JasperFillManager.fillReport(archivo, null, ds);
+
+        JasperExportManager.exportReportToPdfFile(
+                jp,
+                "C:\\Users\\Usuario\\Downloads\\GestorFacturasJMMF\\productos.pdf"
+        );
+
+        Desktop.getDesktop().open(
+                new File("C:\\Users\\Usuario\\Downloads\\GestorFacturasJMMF\\productos.pdf")
+        );
+
+        em.close();
+        emf.close();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e.getMessage());
+    }
     }//GEN-LAST:event_BtnEmpleadosActionPerformed
 
     /**
