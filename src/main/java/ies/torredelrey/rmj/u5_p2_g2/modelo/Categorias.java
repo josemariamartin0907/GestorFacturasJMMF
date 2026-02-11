@@ -13,6 +13,8 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -22,6 +24,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "categorias")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Categorias.findAll", query = "SELECT c FROM Categorias c"),
     @NamedQuery(name = "Categorias.findByCategoriaid", query = "SELECT c FROM Categorias c WHERE c.categoriaid = :categoriaid"),
@@ -67,6 +70,7 @@ public class Categorias implements Serializable {
         this.nombrecat = nombrecat;
     }
 
+    @XmlTransient
     public Collection<Productos> getProductosCollection() {
         return productosCollection;
     }

@@ -15,6 +15,8 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -24,6 +26,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "productos")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Productos.findAll", query = "SELECT p FROM Productos p"),
     @NamedQuery(name = "Productos.findByProductoid", query = "SELECT p FROM Productos p WHERE p.productoid = :productoid"),
@@ -99,6 +102,7 @@ public class Productos implements Serializable {
         this.existencia = existencia;
     }
 
+    @XmlTransient
     public Collection<DetalleOrdenes> getDetalleOrdenesCollection() {
         return detalleOrdenesCollection;
     }
@@ -111,12 +115,20 @@ public class Productos implements Serializable {
         return categoriaid;
     }
 
+    public String getCategoriaName() {
+        return categoriaid.getNombrecat();
+    }
+
     public void setCategoriaid(Categorias categoriaid) {
         this.categoriaid = categoriaid;
     }
 
     public Proveedores getProveedorid() {
         return proveedorid;
+    }
+
+    public String getProveedorName() {
+        return proveedorid.getNombreprov();
     }
 
     public void setProveedorid(Proveedores proveedorid) {

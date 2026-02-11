@@ -13,6 +13,8 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -22,6 +24,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "clientes")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Clientes.findAll", query = "SELECT c FROM Clientes c"),
     @NamedQuery(name = "Clientes.findByClienteid", query = "SELECT c FROM Clientes c WHERE c.clienteid = :clienteid"),
@@ -150,6 +153,7 @@ public class Clientes implements Serializable {
         this.fijo = fijo;
     }
 
+    @XmlTransient
     public Collection<Ordenes> getOrdenesCollection() {
         return ordenesCollection;
     }

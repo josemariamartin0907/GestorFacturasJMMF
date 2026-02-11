@@ -13,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -21,6 +22,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "detalle_ordenes")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "DetalleOrdenes.findAll", query = "SELECT d FROM DetalleOrdenes d"),
     @NamedQuery(name = "DetalleOrdenes.findByOrdenid", query = "SELECT d FROM DetalleOrdenes d WHERE d.detalleOrdenesPK.ordenid = :ordenid"),

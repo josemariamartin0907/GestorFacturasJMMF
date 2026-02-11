@@ -17,6 +17,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -27,6 +29,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "empleados")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Empleados.findAll", query = "SELECT e FROM Empleados e"),
     @NamedQuery(name = "Empleados.findByEmpleadoid", query = "SELECT e FROM Empleados e WHERE e.empleadoid = :empleadoid"),
@@ -105,6 +108,7 @@ public class Empleados implements Serializable {
         this.extension = extension;
     }
 
+    @XmlTransient
     public Collection<Ordenes> getOrdenesCollection() {
         return ordenesCollection;
     }
@@ -113,6 +117,7 @@ public class Empleados implements Serializable {
         this.ordenesCollection = ordenesCollection;
     }
 
+    @XmlTransient
     public Collection<Empleados> getEmpleadosCollection() {
         return empleadosCollection;
     }

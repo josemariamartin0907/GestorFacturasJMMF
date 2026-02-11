@@ -13,6 +13,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -105,36 +106,35 @@ public class FrmProductos extends javax.swing.JFrame {
         EntityManagerFactory emf =
                 Persistence.createEntityManagerFactory("persistence");
 
-        EntityManager em = emf.createEntityManager();
-
+        
         // TU JPA controller
         ProductosJpaController con = new ProductosJpaController(emf);
 
         // Obtener lista de productos desde JPA
         List<Productos> lista = con.findProductosEntities();
 
+        
         // Convertir a DataSource Jasper
         JRBeanCollectionDataSource ds =
                 new JRBeanCollectionDataSource(lista);
 
-        String archivo = "C:\\Users\\Usuario\\Downloads\\GestorFacturasJMMF\\report_trabajo2.jasper";
-
-        JasperPrint jp = JasperFillManager.fillReport(archivo, null, ds);
+        String archivo = "./report_trabajo2.jasper";
+        
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("TOTAL_PRODUCTOS", lista.size());
+        
+        JasperPrint jp = JasperFillManager.fillReport(archivo, params, ds);
 
         JasperExportManager.exportReportToPdfFile(
                 jp,
-                "C:\\Users\\Usuario\\Downloads\\GestorFacturasJMMF\\productos.pdf"
+                "./productos.pdf"
         );
 
-        Desktop.getDesktop().open(
-                new File("C:\\Users\\Usuario\\Downloads\\GestorFacturasJMMF\\productos.pdf")
-        );
-
-        em.close();
         emf.close();
 
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, e.getMessage());
+        e.printStackTrace();
     }
     }//GEN-LAST:event_BtnEmpleadosActionPerformed
 

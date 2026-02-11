@@ -17,6 +17,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -27,6 +29,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "ordenes")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Ordenes.findAll", query = "SELECT o FROM Ordenes o"),
     @NamedQuery(name = "Ordenes.findByOrdenid", query = "SELECT o FROM Ordenes o WHERE o.ordenid = :ordenid"),
@@ -106,6 +109,7 @@ public class Ordenes implements Serializable {
         this.empleadoid = empleadoid;
     }
 
+    @XmlTransient
     public Collection<DetalleOrdenes> getDetalleOrdenesCollection() {
         return detalleOrdenesCollection;
     }
