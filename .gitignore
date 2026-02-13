@@ -6,8 +6,6 @@
 /nbdist/
 /.nb-gradle/
 # Ignore JPA persistence configuration
-**/persistence.xml
-
 # IDE config
 /.idea/
 /*.iml

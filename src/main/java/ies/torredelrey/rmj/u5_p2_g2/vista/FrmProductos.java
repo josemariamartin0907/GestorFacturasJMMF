@@ -6,13 +6,10 @@ package ies.torredelrey.rmj.u5_p2_g2.vista;
 
 import ies.torredelrey.rmj.u5_p2_g2.ProductosJpaController;
 import ies.torredelrey.rmj.u5_p2_g2.modelo.Productos;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import java.awt.Desktop;
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -107,7 +104,6 @@ public class FrmProductos extends javax.swing.JFrame {
                 Persistence.createEntityManagerFactory("persistence");
 
         
-        // TU JPA controller
         ProductosJpaController con = new ProductosJpaController(emf);
 
         // Obtener lista de productos desde JPA
@@ -129,8 +125,9 @@ public class FrmProductos extends javax.swing.JFrame {
                 jp,
                 "./productos.pdf"
         );
-
+        Desktop.getDesktop().open(new File("./productos.pdf"));
         emf.close();
+        
 
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, e.getMessage());
