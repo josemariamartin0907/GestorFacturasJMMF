@@ -8,6 +8,7 @@ import ies.torredelrey.rmj.u5_p2_g2.EmpleadosJpaController;
 import ies.torredelrey.rmj.u5_p2_g2.GeneradorInforme;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -92,7 +93,13 @@ public class FrmEmpleados extends javax.swing.JFrame {
     private void BtnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEmpleadosActionPerformed
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence");
         EmpleadosJpaController controller = new EmpleadosJpaController(emf);
-        GeneradorInforme.leerInformeBD(controller.findEmpleadosEntities());    }//GEN-LAST:event_BtnEmpleadosActionPerformed
+        try {
+        GeneradorInforme.leerInformeBD(controller.findEmpleadosEntities());
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error al generar el informe: " + ex.getMessage());
+    }
+        }//GEN-LAST:event_BtnEmpleadosActionPerformed
 
     /**
      * @param args the command line arguments
