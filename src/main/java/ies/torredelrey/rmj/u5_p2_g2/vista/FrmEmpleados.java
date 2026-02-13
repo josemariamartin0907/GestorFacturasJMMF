@@ -4,6 +4,11 @@
  */
 package ies.torredelrey.rmj.u5_p2_g2.vista;
 
+import ies.torredelrey.rmj.u5_p2_g2.EmpleadosJpaController;
+import ies.torredelrey.rmj.u5_p2_g2.GeneradorInforme;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+
 /**
  *
  * @author Usuario
@@ -85,8 +90,9 @@ public class FrmEmpleados extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEmpleadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnEmpleadosActionPerformed
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence");
+        EmpleadosJpaController controller = new EmpleadosJpaController(emf);
+        GeneradorInforme.leerInformeBD(controller.findEmpleadosEntities());    }//GEN-LAST:event_BtnEmpleadosActionPerformed
 
     /**
      * @param args the command line arguments

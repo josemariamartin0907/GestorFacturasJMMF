@@ -13,6 +13,7 @@ ies\torredelrey\rmj\u5_p2_g2\EmpleadosJpaController.class
 ies\torredelrey\rmj\u5_p2_g2\modelo\DetalleOrdenes.class
 ies\torredelrey\rmj\u5_p2_g2\vista\FrmProductos$1.class
 ies\torredelrey\rmj\u5_p2_g2\controlador\exceptions\PreexistingEntityException.class
+ies\torredelrey\rmj\u5_p2_g2\GeneradorInforme.class
 ies\torredelrey\rmj\u5_p2_g2\vista\FrmEmpleados.class
 ies\torredelrey\rmj\u5_p2_g2\controlador\exceptions\IllegalOrphanException.class
 ies\torredelrey\rmj\u5_p2_g2\U5_P2_G2.class
